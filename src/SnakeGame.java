@@ -16,20 +16,18 @@ public class SnakeGame extends JPanel {
             this.x = x;
             this.y = y;
         }
-
-
     }
 
     int BoardWidth; //member of snameGame class
     int BoardHeight;
-    int titleSize = 10; // 25px
+    int titleSize = 25; // 25px
     Tile snakeHead;
     SnakeGame(int BoardWidth,int BoardHeight){
         this.BoardWidth =  BoardWidth;
         this.BoardHeight = BoardHeight;
         setPreferredSize(new Dimension(this.BoardWidth,this.BoardHeight));
         setBackground(Color.black);
-        snakeHead = new Tile(100,100); //default starting point
+        snakeHead = new Tile(5,5); //default starting point
     }
 
     public void paintComponent(Graphics g){
@@ -38,9 +36,19 @@ public class SnakeGame extends JPanel {
     }
 
     public void draw(Graphics g){
+        //grid
+        for (int i =0 ; i < BoardWidth/titleSize ; i++){
+//            g.setColor(Color.cyan);
+            g.drawLine(i*titleSize,0,i*titleSize,BoardHeight);
+            g.drawLine(0,i*titleSize,BoardWidth,i*titleSize);
+//            g.drawLine(0, 25, 600, 25); 0 = starting point  600 = end point ,, y = height
+//            g.drawLine(25,0,25,600);
+        }
+
         //snake
         g.setColor(Color.green);
-        g.fillOval(snakeHead.x,snakeHead.y,titleSize,titleSize); //titleszie width & height
+        //125 125px
+        g.fillOval(snakeHead.x * titleSize,snakeHead.y * titleSize,titleSize,titleSize); //titleszie width & height
     }
 
 }
