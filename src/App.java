@@ -16,6 +16,8 @@ public class App {
 
         SnakeGame snakeGame = new SnakeGame(BoardWidth,BoardHeight);
         jFrame.add(snakeGame);
+        jFrame.pack(); //means height eka dunnata title bar eken e kotasa adu wenwa eka nati kirimata pack() use karanwa
+
 
 
     }
