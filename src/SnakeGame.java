@@ -67,7 +67,7 @@ public class SnakeGame extends JPanel implements ActionListener,KeyListener {
         random = new Random();
         placeEgg();
 
-        gameloop = new Timer(200,this);
+        gameloop = new Timer(75,this);
         gameloop.start();
 
     }
@@ -90,10 +90,10 @@ public class SnakeGame extends JPanel implements ActionListener,KeyListener {
         //snake
         g.setColor(Color.green);
         //125 125px
-        g.fillOval(snakeHead.x * titleSize,snakeHead.y * titleSize,titleSize,titleSize); //titleszie width & height
+        g.fillRect(snakeHead.x * titleSize,snakeHead.y * titleSize,titleSize,titleSize); //titleszie width & height
 
         g.setColor(Color.red);
-        g.fillOval(egg.x*titleSize,egg.y*titleSize,titleSize,titleSize);
+        g.fillRect(egg.x*titleSize,egg.y*titleSize,titleSize,titleSize);
     }
 
     public void placeEgg(){
@@ -105,6 +105,7 @@ public class SnakeGame extends JPanel implements ActionListener,KeyListener {
     public void move(){
         snakeHead.x += velocityX;
         snakeHead.y += velocityY;
+
     }
 
     @Override
