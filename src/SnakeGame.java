@@ -168,11 +168,19 @@ public class SnakeGame extends JPanel implements ActionListener,KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        move();
-        repaint();
-        if(gameOver){
+//        move();
+//        repaint();
+//        if(gameOver){
+//            gameloop.stop();
+//            JOptionPane.showMessageDialog(null,"Game over");
+//        }
+
+        if (!gameOver) {
+            move();
+            repaint();
+        } else {
             gameloop.stop();
-            JOptionPane.showMessageDialog(null,"Game over");
+            JOptionPane.showMessageDialog(this, "Game Over");
         }
 
 
