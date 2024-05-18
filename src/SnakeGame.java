@@ -49,6 +49,7 @@ public class SnakeGame extends JPanel implements ActionListener,KeyListener {
 
     //snakeHead
     Tile snakeHead;
+    ArrayList<Tile>snakeBody;
     //Egg
     Tile egg;
 
@@ -63,11 +64,12 @@ public class SnakeGame extends JPanel implements ActionListener,KeyListener {
         addKeyListener(this);
         setFocusable(true);
         snakeHead = new Tile(5,5); //default starting point
+        snakeBody = new ArrayList<Tile>(); //to store body parts
         egg = new Tile(15,15);
         random = new Random();
         placeEgg();
 
-        gameloop = new Timer(75,this);
+        gameloop = new Timer(100,this);
         gameloop.start();
 
     }
@@ -90,10 +92,17 @@ public class SnakeGame extends JPanel implements ActionListener,KeyListener {
         //snake
         g.setColor(Color.green);
         //125 125px
-        g.fillRect(snakeHead.x * titleSize,snakeHead.y * titleSize,titleSize,titleSize); //titleszie width & height
+        g.fillOval(snakeHead.x * titleSize,snakeHead.y * titleSize,titleSize,titleSize); //titleszie width & height
 
         g.setColor(Color.red);
-        g.fillRect(egg.x*titleSize,egg.y*titleSize,titleSize,titleSize);
+        g.fillOval(egg.x*titleSize,egg.y*titleSize,titleSize,titleSize);
+
+        //snake body
+        for(int i =0 ; i < snakeBody.size() ; i++ ){
+            Tile snakePart = snakeBody.get(i);
+            g.setColor(Color.BLUE);
+            g.fillOval(snakePart.x*titleSize,snakePart.y*titleSize,titleSize,titleSize);
+        }
     }
 
     public void placeEgg(){
@@ -102,9 +111,22 @@ public class SnakeGame extends JPanel implements ActionListener,KeyListener {
 
     }
 
+
+
+    public boolean collision(Tile tile1,Tile tile2){
+        return tile1.x == tile2.x && tile1.y == tile2.y;
+     }
+
     public void move(){
+        if(collision(snakeHead,egg)) {
+            snakeBody.add(new Tile(egg.x,egg.y));
+            placeEgg();
+        }
+
+
         snakeHead.x += velocityX;
         snakeHead.y += velocityY;
+
 
     }
 
